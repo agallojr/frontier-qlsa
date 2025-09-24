@@ -13,11 +13,10 @@ dependencies = [
     "qiskit_qasm3_import",
     "qiskit_aer",
     "numpy",
-    "qiskit_addon_sqd",
     "matplotlib",
     "scipy>=1.15.0,<1.17.0",
     "pyyaml",
-    "quantum_linear_solvers", 
+    "quantum_linear_solvers @ https://github.com/jw676/quantum_linear_solvers.git", 
     # "qiskit-ionq"
 ]
 
