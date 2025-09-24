@@ -1,0 +1,30 @@
+equires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "frontier-qlsa"
+version = "0.1.0"
+description = "qlsa forked from ornl"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "qiskit_qasm3_import",
+    "qiskit_aer",
+    "numpy",
+    "qiskit_addon_sqd",
+    "matplotlib",
+    "scipy>=1.15.0,<1.17.0",
+    "pyyaml",
+    "quantum_linear_solvers", 
+    "qiskit-ionq"
+]
+
+[tool.setuptools]
+packages = {find = {where = ["."]}}
+
+[tool.black]
+line-length = 88
+[tool.ruff]
+line-length = 88
+
+
