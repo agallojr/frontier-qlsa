@@ -22,7 +22,7 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = {find = {where = ["."]}}
+packages = {find = {where = ["frontier_qlsa"]}}
 
 [tool.black]
 line-length = 88
