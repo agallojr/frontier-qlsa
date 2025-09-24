@@ -8,6 +8,8 @@ description = "qlsa forked from ornl"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "qiskit",
+    "qiskit-ibm-runtime",
     "qiskit_qasm3_import",
     "qiskit_aer",
     "numpy",
@@ -16,7 +18,7 @@ dependencies = [
     "scipy>=1.15.0,<1.17.0",
     "pyyaml",
     "quantum_linear_solvers", 
-    "qiskit-ionq"
+    # "qiskit-ionq"
 ]
 
 [tool.setuptools]

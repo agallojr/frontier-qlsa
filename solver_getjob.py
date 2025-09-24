@@ -2,6 +2,8 @@
 Script to extract and process job results from IBM, IQM, and IonQ.
 '''
 
+# pylint: disable = possibly-used-before-assignment
+
 import numpy as np
 from func_qc import get_ancillaqubit, fidelity
 import func_matrix_vector as matvec
@@ -51,29 +53,29 @@ if backend_type=='real-ibm':
     service = QiskitRuntimeService()  # To get back results
     backend = service.backend(backend_method)
     job = service.job(job_id)
-elif backend_type=='real-iqm':
-    from iqm.qiskit_iqm import IQMProvider
-    # save your IQM account for future loading
-    API_KEY = os.getenv('IQM_API_KEY') # ${IQM_TOKEN} can't be set when using `token` parameter below
-    server_url = f"https://cocos.resonance.meetiqm.com/{backend_method}"
-    if "fake" in backend_method: # "facade" backends only work for Adonis (switching to "fake" backends)
-        raise Exception('IQM fake backend results cannot be retrieved using this code.')
-    else:
-        backend = IQMProvider(server_url, token=API_KEY).get_backend()
-    from iqm.qiskit_iqm.iqm_job import IQMJob
-    job = IQMJob(backend, job_id)
-elif backend_type=='real-ionq':
-    from qiskit_ionq import IonQProvider
-    # save your IonQ accout for future loading
-    API_KEY = os.getenv('IONQ_API_KEY')
-    provider = IonQProvider(API_KEY)
-    if "qpu." in backend_method: # real hardware
-        backend = provider.get_backend(f"{backend_method}", gateset='qis')
-    else: # emulator: add noise to simulator to obtain emulator
-        backend = provider.get_backend("simulator", gateset='qis')
-        backend.set_options(shots=args.SHOTS, sampler_seed=np.random.randint(100), noise_model=backend_method)
-    from qiskit_ionq import ionq_job
-    job = ionq_job.IonQJob(backend, job_id)
+# elif backend_type=='real-iqm':
+#     from iqm.qiskit_iqm import IQMProvider
+#     # save your IQM account for future loading
+#     API_KEY = os.getenv('IQM_API_KEY') # ${IQM_TOKEN} can't be set when using `token` parameter below
+#     server_url = f"https://cocos.resonance.meetiqm.com/{backend_method}"
+#     if "fake" in backend_method: # "facade" backends only work for Adonis (switching to "fake" backends)
+#         raise Exception('IQM fake backend results cannot be retrieved using this code.')
+#     else:
+#         backend = IQMProvider(server_url, token=API_KEY).get_backend()
+#     from iqm.qiskit_iqm.iqm_job import IQMJob
+#     job = IQMJob(backend, job_id)
+# elif backend_type=='real-ionq':
+#     from qiskit_ionq import IonQProvider
+#     # save your IonQ accout for future loading
+#     API_KEY = os.getenv('IONQ_API_KEY')
+#     provider = IonQProvider(API_KEY)
+#     if "qpu." in backend_method: # real hardware
+#         backend = provider.get_backend(f"{backend_method}", gateset='qis')
+#     else: # emulator: add noise to simulator to obtain emulator
+#         backend = provider.get_backend("simulator", gateset='qis')
+#         backend.set_options(shots=args.SHOTS, sampler_seed=np.random.randint(100), noise_model=backend_method)
+#     from qiskit_ionq import ionq_job
+#     job = ionq_job.IonQJob(backend, job_id)
 else:
     raise Exception(f'Backend type \'{backend_type}\' not implemented.')
 
