@@ -37,6 +37,8 @@ parser.add_argument("--drawcirc", default=False, action='store_true', help="Draw
 
 parser.add_argument("--savedata", default=False, action='store_true',
     help="Save data at `models/<filename>` with `<filename>` based on parameters.")
+
+parser.add_argument("--no-transpile", default=False, action='no_transpile', help="Don't transpile")
 args = parser.parse_args()
 
 if __name__ == '__main__':
@@ -70,7 +72,10 @@ if __name__ == '__main__':
 
     # Save data
     if args.savedata:
-        circ_transpile = transpile(circ, backend)
+        if args.no_transpile:
+            circ_transpile = circ
+        else:
+            circ_transpile = transpile(circ, backend)
         # save metadata (DON'T USE Pickle to save the circuit - only works for a given version)
         save_data = {   'args'                  : args,
                         'input_vars'            : input_vars,
