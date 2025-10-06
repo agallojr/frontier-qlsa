@@ -334,7 +334,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "lwfm", git = "https://github.com/lwfm-proj/lwfm?rev=develop" },
+    { name = "lwfm", git = "https://github.com/lwfm-proj/lwfm" },
     { name = "matplotlib" },
     { name = "numpy" },
     { name = "pyyaml" },
@@ -466,7 +466,7 @@ wheels = [
 [[package]]
 name = "lwfm"
 version = "0.1.0"
-source = { git = "https://github.com/lwfm-proj/lwfm?rev=develop#58ef49c1f8057161fa21bef7d15f58bfd28b47ff" }
+source = { git = "https://github.com/lwfm-proj/lwfm#1f6aacb45a10fed24da98c1927f245fe48a9eef2" }
 dependencies = [
     { name = "dill" },
     { name = "flask" },
