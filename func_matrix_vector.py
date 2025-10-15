@@ -141,7 +141,11 @@ def Hele_Shaw(doc_id, args):
     else:
         print('Using analytical pressure profile...')
     # make sure size of A & B is power of 2
-    print(f'Determinant of resulting matrix: {np.linalg.det(A)}\nCondition # of resulting matrix: {np.linalg.cond(A)}')
+    # Save original matrix before transformations
+    A_original = A.copy()
+    B_original = B.copy()
+    original_cond = np.linalg.cond(A)
+    print(f'Determinant of resulting matrix: {np.linalg.det(A)}\nCondition # of resulting matrix: {original_cond}')
     # contidion # ??
     A, B = check_size_pow2(A, B)
     A_herm, B_herm = check_matrix_herm(A, B)
@@ -154,7 +158,7 @@ def Hele_Shaw(doc_id, args):
         save_data = {'P_in'                  : P_in,
                      'P_out'                 : P_out,
                      'U_top'                 : U_top,
-                     'U_bottom'              : U_bottom, 
+                     'U_bottom'              : U_bottom,
                      'L'                     : L,
                      'D'                     : D,
                      'mu'                    : mu,
@@ -163,6 +167,9 @@ def Hele_Shaw(doc_id, args):
                      'ny'                    : ny,
                      'A_herm'                : A_herm,
                      'B_herm'                : B_herm,
+                     'A_original'            : A_original,
+                     'B_original'            : B_original,
+                     'original_cond'         : original_cond,
                      'n_qubits_matrix'       : n_qubits_matrix,
                      'args'                  : args}
         file = open(f'{filename}_metadata.pkl', 'wb')
