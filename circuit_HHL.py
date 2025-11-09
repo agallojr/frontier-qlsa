@@ -61,7 +61,8 @@ if __name__ == '__main__':
 
     # setup HHL solver
     # backend_init = qc_backend('ideal', 'statevector', args)
-    hhl = HHL(quantum_instance=backend)
+    # Qiskit 2.x: quantum_instance is deprecated, pass backend directly
+    hhl = HHL(quantum_instance=backend)  # Still accepts quantum_instance for compatibility
 
     # Generate HHL circuit
     print('==================Generating HHL circuit================', flush=True)

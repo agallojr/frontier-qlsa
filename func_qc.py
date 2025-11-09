@@ -23,7 +23,7 @@ from qiskit.quantum_info import Statevector
 from qiskit.visualization import plot_histogram
 from qiskit_aer import AerSimulator
 from qiskit_ibm_runtime import SamplerV2 as Sampler
-from qiskit_ibm_runtime import RuntimeEncoder
+# RuntimeEncoder removed - not used (was only in commented code)
 from qiskit_ibm_runtime.fake_provider import FakeProviderForBackendV2
 from qiskit_ibm_runtime import QiskitRuntimeService
 
@@ -53,7 +53,9 @@ def qc_backend(backend_type, backend_method, args):
             API_KEY = os.getenv('IBMQ_API_KEY')
             instance = os.getenv('IBMQ_INSTANCE')
             # save your QiskitRuntimeService accout for future loading
+            # Qiskit 2.x: channel parameter is required
             QiskitRuntimeService.save_account(
+              channel="ibm_quantum",
               token=API_KEY,
               instance=instance,
               overwrite=True

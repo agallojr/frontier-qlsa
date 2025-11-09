@@ -1,4 +1,5 @@
-equires = ["setuptools>=42", "wheel"]
+[build-system]
+requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -6,24 +7,26 @@ name = "frontier-qlsa"
 version = "0.1.0"
 description = "qlsa forked from ornl"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12,<3.14"
 dependencies = [
-    # "qiskit>=1.4,<2.0",
-    "qiskit==1.2.4",
-    #"qiskit-aer==0.15.1",
-    "qiskit-algorithms==0.3.1",   
-    "qiskit-ibm-runtime==0.35.0",
-    "qiskit-qasm3-import==0.5.1",
-    #"qiskit-iqm==18.0",
-    #"qiskit-algorithms",
-    #"qiskit-ibm-runtime",
-    #"qiskit_qasm3_import",
-    "qiskit_aer",
-    "numpy",
-    "matplotlib",
-    "scipy>=1.15.0,<1.17.0",
-    "pyyaml",
-    "quantum_linear_solvers @ git+https://github.com/jw676/quantum_linear_solvers.git@main", 
+    # Core dependencies
+    "numpy>=2.2.6",
+    "scipy>=1.15.3",
+    "matplotlib>=3.10.7",
+    "PyYAML>=6.0.3",
+    # Quantum computing dependencies (matching fvm_euler_1d_solver)
+    "quantum_linear_solvers @ git+https://github.com/agallojr/quantum_linear_solvers",
+    "qiskit>=2.2.3,<3.0",
+    "qiskit-algorithms>=0.4.0",
+    "qiskit-ibm-runtime>=0.43.1",
+    "qiskit-aer>=0.17.2",
+    "qiskit-qasm3-import>=0.6.0",
+    "ddt>=1.7.2",
+    "importlib-metadata>=8.7.0",
+    "mapomatic>=0.14.0",
+    "mthree>=3.0.0",
+    "pylatexenc>=2.10",
+    # Frontier-specific dependencies
     "lwfm @ git+https://github.com/lwfm-proj/lwfm",
 ]
 

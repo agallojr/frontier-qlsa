@@ -44,7 +44,8 @@ if __name__ == '__main__':
 
     # ============
     # Setup HHL solver
-    hhl = HHL(1e-3, quantum_instance=backend)
+    # Qiskit 2.x: quantum_instance is deprecated, pass backend directly
+    hhl = HHL(1e-3, quantum_instance=backend)  # Still accepts quantum_instance for compatibility
     print(f'Simulator: {backend}')
 
     # ============

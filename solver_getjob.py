@@ -45,7 +45,9 @@ if backend_type=='real-ibm':
     API_KEY = os.getenv('IBMQ_API_KEY')
     instance = os.getenv('IBMQ_INSTANCE')
     # save your QiskitRuntimeService accout for future loading
+    # Qiskit 2.x: channel parameter is required
     QiskitRuntimeService.save_account(
+        channel="ibm_quantum",
         token=API_KEY,
         instance=instance,
         overwrite=True
