@@ -26,8 +26,6 @@ dependencies = [
     "mapomatic>=0.14.0",
     "mthree>=3.0.0",
     "pylatexenc>=2.10",
-    # Frontier-specific dependencies
-    "lwfm @ git+https://github.com/lwfm-proj/lwfm",
 ]
 
 [tool.setuptools]
