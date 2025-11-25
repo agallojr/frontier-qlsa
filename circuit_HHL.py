@@ -77,6 +77,12 @@ if __name__ == '__main__':
             circ_transpile = circ
         else:
             circ_transpile = transpile(circ, backend)
+        
+        # Decompose circuit to avoid QPY serialization issues with ExactReciprocalGate in qiskit 2.x
+        # This expands custom gates into basic gates that QPY can handle
+        # Need multiple levels of decomposition to fully expand ExactReciprocal
+        circ_decomposed = circ_transpile.decompose().decompose().decompose()
+        
         # save metadata (DON'T USE Pickle to save the circuit - only works for a given version)
         save_data = {   'args'                  : args,
                         'input_vars'            : input_vars,
@@ -88,9 +94,9 @@ if __name__ == '__main__':
         file = open(f'{savefilename}.pkl', 'wb')
         pickle.dump(save_data, file)
         file.close()
-        # save circuit as QPY file
+        # save circuit as QPY file (decomposed to avoid qiskit 2.x QPY bugs with custom gates)
         with open(f'{savefilename}.qpy', 'wb') as fd:
-            qpy.dump(circ_transpile, fd)
+            qpy.dump(circ_decomposed, fd)
         print("===========Circuit saved===========")
 
     # Plot circuit

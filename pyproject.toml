@@ -26,7 +26,11 @@ dependencies = [
     "mapomatic>=0.14.0",
     "mthree>=3.0.0",
     "pylatexenc>=2.10",
+    "lwfm",
 ]
+
+[tool.uv.sources]
+lwfm = { path = "../lwfm", editable = true }
 
 [tool.setuptools]
 packages = ["frontier_qlsa"]
